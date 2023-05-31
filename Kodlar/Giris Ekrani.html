@@ -8,9 +8,11 @@
     <title>Giriş Yapma</title>
 </head>
 <body>
-  <script src="Js.js"></script>
-  <button onclick="toggleForm()" style="border-radius: 0%; width: 45%;" >Giriş Yap</button>
-  <button onclick="toggleForm()" style="border-radius: 0%; width: 45%; position: absolute; transform: translateX(20%);">Kayıt Ol</button>
+  <button class="centered-button" onclick="showLoginForm()" style="float:left">Giriş Yap</button>
+  <button class="centered-button" onclick="showSignupForm()" style=" float:right; background-color: rgb(107, 188, 219) ;">Kayıt Ol</button>
+  
+  <div style="height: 120px;"></div>
+
     <form action="action_page.php" method="post" id="login-form">
         <div class="imgcontainer">
           <img src="https://pic.onlinewebfonts.com/svg/img_550781.png" alt="Avatar" class="avatar"
@@ -26,11 +28,6 @@
       
           <button type="submit"">Giriş</button>
         </div>
-      
-        <div class="container" style="background-color:#f1f1f1">
-          <label>Hesabınız</label>
-          <button type="submit" style="width: 25%;">Kayıt Ol</button>
-        </div>
       </form> 
 
       <form action="action_page.php" style="border:1px solid #ccc" id="signup-form">
@@ -38,7 +35,10 @@
           <h1>Kayıt Ol</h1>
           <p>Hesap oluşturmak için lütfen gerekli alanları doldurunuz.</p>
           <hr>
-      
+          
+          <label for="kullaniciAdi"><b>Kullancı Adı</b></label>
+          <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="kullaniciAdi" required>
+
           <label for="email"><b>Email</b></label>
           <input type="text" placeholder="Email Adresinizi Giriniz" name="email" required>
       
@@ -48,14 +48,11 @@
           <label for="psw-repeat"><b>Şifre Doğrulama</b></label>
           <input type="password" placeholder="Şifrenizi Doğrulayınız" name="psw-repeat" required>
       
-          <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Beni Hatırla
-          </label>
-            
           <div class="clearfix">
-            <button type="submit" class="signupbtn">Kayıt Ol</button>
+            <button type="submit" class="signupbtn" style="background-color: rgb(107, 188, 219) ;">Kayıt Ol</button>
           </div>
         </div>
       </form> 
+      <script src="Js.js"></script>
 </body>
 </html>

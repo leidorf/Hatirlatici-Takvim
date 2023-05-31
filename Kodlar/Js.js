@@ -1,14 +1,15 @@
-var loginForm = document.getElementById("login-form");
-var signupForm = document.getElementById("signup-form");
+  var loginForm = document.getElementById("login-form");
+  var signupForm = document.getElementById("signup-form");
 
-function toggleForm() {
-  if (loginForm.style.display === "none") {
-    // Eğer login formu gizli ise, göster ve signup formunu gizle
+  // Sayfa yüklendiğinde varsayılan olarak giriş yapma formunu göster
+  showLoginForm();
+
+  function showLoginForm() {
     loginForm.style.display = "block";
     signupForm.style.display = "none";
-  } else {
-    // Eğer signup formu gizli ise, göster ve login formunu gizle
+  }
+
+  function showSignupForm() {
     loginForm.style.display = "none";
     signupForm.style.display = "block";
   }
-}
