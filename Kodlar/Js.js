@@ -23,3 +23,25 @@ function toggleForm() {
     toggleButton.style.backgroundColor = "rgb(107, 188, 219)";
   }
 }
+function showTime() {
+  var date = new Date();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  
+  // Saat değerini iki basamaklı formatta göstermek için kontrol yapalım
+  hours = addLeadingZero(hours);
+  minutes = addLeadingZero(minutes);
+  seconds = addLeadingZero(seconds);
+
+  var time = hours + "." + minutes + "." + seconds;
+  document.getElementById("clock").textContent = time;
+  setTimeout(showTime, 1000);
+}
+
+function addLeadingZero(value) {
+  if (value < 10) {
+    return "0" + value;
+  }
+  return value;
+}

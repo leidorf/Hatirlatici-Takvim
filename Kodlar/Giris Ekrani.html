@@ -7,35 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giriş Yapma</title>
 </head>
-<body>
+<body onload="showTime()">
 
-  <img style="opacity: 875%; z-index: -1; height: 46% ; top: 18%; margin-left: 65%;position: absolute;" src="https://www.valueresearchonline.com/content-assets/images/51993_calendar__w660__.jpg" alt="Takvim Fotoğrafı">
+  <script src="Js.js"></script>
 
-  <p style="font-size: 300%; color:  #000000c4 ;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ; text-align: left;">Hatırlatıcı Takvim</p>
+  <span id="clock"></span>
+  
+  <img id="clock_img" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/clock_hour_minute_second_time_timer_watch_icon_123193.png">
 
+  <img style="opacity: 875%; z-index: -1; height: 450px; width: 750px; top: 18%; right: 0px; position: absolute;" src="https://www.valueresearchonline.com/content-assets/images/51993_calendar__w660__.jpg" alt="Takvim Fotoğrafı">
+  
+  <p  style="font-size: 300%; color:  #000000c4 ;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hatırlatıcı Takvim</p>
+  
   <div style="text-align: center;">
     <button id="toggle-button" onclick="toggleForm()" style="font-size: medium; float: left; border-radius: 0%; width: 40.5%;">Giriş Yap / Kayıt Ol</button>
   </div>
-
+  
   <div class="spacer"></div>
-
-    <form action="action_page.php" method="post" id="login-form">
-        <div class="imgcontainer">
-          <img src="https://pic.onlinewebfonts.com/svg/img_550781.png" alt="Avatar" class="avatar"
-          style="height: 125px; width: 125px;">
-        </div>
+  
+  <form action="action_page.php" method="post" id="login-form">
+    
+    <div class="imgcontainer">
+      <img src="https://pic.onlinewebfonts.com/svg/img_550781.png" alt="Avatar" class="avatar"
+      style="height: 125px; width: 125px;">
+    </div>
+    
+    <div class="container">
+      <label for="uname"><b>Kullanıcı Adı</b></label>
+      <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="uname" required>
       
-        <div class="container">
-          <label for="uname"><b>Kullanıcı Adı</b></label>
-          <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="uname" required>
+      <label for="psw"><b>Şifre</b></label>
+      <input type="password" placeholder="Şifrenizi Giriniz" name="psw" required>
       
-          <label for="psw"><b>Şifre</b></label>
-          <input type="password" placeholder="Şifrenizi Giriniz" name="psw" required>
+      <button type="submit" style="font-size: medium;">Giriş</button>
       
-          <button type="submit" style="font-size: medium;">Giriş</button>
-        </div>
-      </form> 
-
+    </div>
+  </form> 
+  
       <form action="action_page.php" id="signup-form">
         <div class="container">
           <h1>Kayıt Ol</h1>
@@ -59,6 +67,5 @@
           </div>
         </div>
       </form> 
-      <script src="Js.js"></script>
 </body>
 </html>
