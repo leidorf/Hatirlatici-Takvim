@@ -1,3 +1,7 @@
+document.getElementById("signupButton").onclick = function(){
+  location.reload;
+}
+
 window.addEventListener("DOMContentLoaded", function() {
   var loginForm = document.getElementById("login-form");
   var signupForm = document.getElementById("signup-form");
@@ -20,9 +24,10 @@ function toggleForm() {
     loginForm.style.display = "none";
     signupForm.style.display = "block";
     toggleButton.innerHTML = "Kayıt Ol / Giriş Yap";
-    toggleButton.style.backgroundColor = "rgb(107, 188, 219)";
+    toggleButton.style.backgroundColor = "#92a1d1";
   }
 }
+
 function showTime() {
   var date = new Date();
   var hours = date.getHours();

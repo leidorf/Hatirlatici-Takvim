@@ -17,7 +17,7 @@
 
   <img style="opacity: 875%; z-index: -1; height: 450px; width: 750px; top: 18%; right: 0px; position: absolute;" src="https://www.valueresearchonline.com/content-assets/images/51993_calendar__w660__.jpg" alt="Takvim Fotoğrafı">
   
-  <p  style="font-size: 300%; color:  #000000c4 ;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hatırlatıcı Takvim</p>
+  <p style="font-size: 300%; color: #000000c4; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hatırlatıcı Takvim</p>
   
   <div style="text-align: center;">
     <button id="toggle-button" onclick="toggleForm()" style="font-size: medium; float: left; border-radius: 0%; width: 40.5%;">Giriş Yap / Kayıt Ol</button>
@@ -44,28 +44,28 @@
     </div>
   </form> 
   
-      <form action="action_page.php" id="signup-form">
-        <div class="container">
-          <h1>Kayıt Ol</h1>
-          <p>Hesap oluşturmak için lütfen gerekli alanları doldurunuz.</p>
-          <hr>
-          
-          <label for="kullaniciAdi"><b>Kullancı Adı</b></label>
-          <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="kullaniciAdi" required>
+  <form  id="signup-form" style="display: none;">
+    <div class="container">
+      <h1>Kayıt Ol</h1>
+      <p>Hesap oluşturmak için lütfen gerekli alanları doldurunuz.</p>
+      <hr>
+      
+      <label for="kullaniciAdi"><b>Kullanıcı Adı</b></label>
+      <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="kullaniciAdi" required>
 
-          <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Email Adresinizi Giriniz" name="email" required>
-      
-          <label for="psw"><b>Şifre</b></label>
-          <input type="password" placeholder="Şifrenizi Giriniz" name="psw" required>
-      
-          <label for="psw-repeat"><b>Şifre Doğrulama</b></label>
-          <input type="password" placeholder="Şifrenizi Doğrulayınız" name="psw-repeat" required>
-      
-          <div class="clearfix">
-            <button type="submit" class="signupbtn" style="font-size: medium; background-color: rgb(107, 188, 219) ;">Kayıt Ol</button>
-          </div>
-        </div>
-      </form> 
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Email Adresinizi Giriniz" name="email" required>
+  
+      <label for="psw"><b>Şifre</b></label>
+      <input type="password" placeholder="Şifrenizi Giriniz" name="psw" required>
+  
+      <label for="psw-repeat"><b>Şifre Doğrulama</b></label>
+      <input type="password" placeholder="Şifrenizi Doğrulayınız" name="psw-repeat" required>
+  
+      <div class="clearfix">
+        <button id="signupButton" type="submit" class="signupbtn" style="font-size: medium; background-color:#92a1d1 ;">Kayıt Ol</button>
+      </div>
+    </div>
+  </form> 
 </body>
 </html>
