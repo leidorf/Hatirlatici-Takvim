@@ -107,6 +107,12 @@ button {
 #cancelButton, #deleteButton {
   background-color: #d36c6c;
 }
+#saveEditedButton {
+  background-color: #61b7d6; /* Dilediğiniz rengi buraya yazın */
+}
+#editButton {
+  background-color: rgb(131, 218, 189);
+}
 #saveButton, #closeButton {
   background-color: #92a1d1;
 }

@@ -10,20 +10,7 @@ const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const eventTimeInput = document.getElementById('eventTimeInput');
 const weekdays = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
-const monthNames = [
-  'Ocak',
-  'Şubat',
-  'Mart',
-  'Nisan',
-  'Mayıs',
-  'Haziran',
-  'Temmuz',
-  'Ağustos',
-  'Eylül',
-  'Ekim',
-  'Kasım',
-  'Aralık'
-];
+const monthNames = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 
 events.push({
   date: clicked,
@@ -35,34 +22,80 @@ function getMonthName(month) {
   return monthNames[month];
 }
 
+function editModal() {
+  const eventForDay = events.find(e => e.date === clicked);
+
+  if (eventForDay) {
+    const eventText = document.getElementById('eventText');
+    eventText.innerHTML = '';
+
+    const eventTitleInput = document.createElement('input');
+    eventTitleInput.type = 'text';
+    eventTitleInput.value = eventForDay.title;
+    eventText.appendChild(eventTitleInput);
+
+    const eventTimeInput = document.createElement('input');
+    eventTimeInput.type = 'time';
+    eventTimeInput.value = eventForDay.time;
+    eventText.appendChild(document.createElement('br'));
+    eventText.appendChild(eventTimeInput);
+
+    const saveButton = document.createElement('button');
+    saveButton.innerText = 'Kaydet';
+    saveButton.id = 'saveEditedButton'; // ID eklendi
+    eventText.appendChild(document.createElement('br'));
+    eventText.appendChild(saveButton);
+
+    saveButton.addEventListener('click', () => saveEditedEvent(eventForDay)); // Event listener eklendi
+  }
+}
+
+
+
+function saveEditedEvent(editedEvent) {
+  const eventTitleInput = document.querySelector('#eventText input[type="text"]');
+  const eventTimeInput = document.querySelector('#eventText input[type="time"]');
+
+  if (eventTitleInput.value) {
+    eventTitleInput.classList.remove('error');
+
+    editedEvent.title = eventTitleInput.value;
+    editedEvent.time = eventTimeInput.value;
+
+    localStorage.setItem('events', JSON.stringify(events));
+    closeModal();
+  } else {
+    eventTitleInput.classList.add('error');
+  }
+}
+
 function openModal(date) {
-   clicked = date;
- 
-   const eventForDay = events.find(e => e.date === clicked);
- 
-   if (eventForDay) {
-     const eventText = document.getElementById('eventText');
-     eventText.innerHTML = '';
- 
-     const eventTitleSpan = document.createElement('span');
-     eventTitleSpan.innerText = eventForDay.title;
-     eventText.appendChild(eventTitleSpan);
- 
-     if (eventForDay.time) {
-       const eventTimeSpan = document.createElement('span');
-       eventTimeSpan.innerText = eventForDay.time;
-       eventText.appendChild(document.createTextNode(' - '));
-       eventText.appendChild(eventTimeSpan);
-     }
- 
-     deleteEventModal.style.display = 'block';
-   } else {
-     newEventModal.style.display = 'block';
-   }
- 
-   backDrop.style.display = 'block';
- }
- 
+  clicked = date;
+
+  const eventForDay = events.find(e => e.date === clicked);
+
+  if (eventForDay) {
+    const eventText = document.getElementById('eventText');
+    eventText.innerHTML = '';
+
+    const eventTitleSpan = document.createElement('span');
+    eventTitleSpan.innerText = eventForDay.title;
+    eventText.appendChild(eventTitleSpan);
+
+    const eventTimeSpan = document.createElement('span');
+    eventTimeSpan.innerText = eventForDay.time;
+    eventText.appendChild(document.createTextNode(' - '));
+    eventText.appendChild(eventTimeSpan);
+
+    deleteEventModal.style.display = 'block';
+  } else {
+    newEventModal.style.display = 'block';
+    eventTimeInput.value = ''; // Reset the time input value
+  }
+
+  backDrop.style.display = 'block';
+}
+
 
 function load() {
   const dt = new Date();
@@ -74,10 +107,8 @@ function load() {
   const day = dt.getDate();
   const month = dt.getMonth();
   const year = dt.getFullYear();
-
   const firstDayOfMonth = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-
   const paddingDays = firstDayOfMonth.getDay();
 
   document.getElementById('monthDisplay').innerText =
@@ -180,6 +211,7 @@ function initButtons() {
   });
 
   document.getElementById('saveButton').addEventListener('click', saveEvent);
+  document.getElementById('editButton').addEventListener('click',editModal);
   document.getElementById('cancelButton').addEventListener('click', closeModal);
   document.getElementById('deleteButton').addEventListener('click', deleteEvent);
   document.getElementById('closeButton').addEventListener('click', closeModal);
