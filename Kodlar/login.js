@@ -1,4 +1,4 @@
-document.getElementById("signupButton").onclick = function(){
+document.getElementById('signupButton').onclick = function(){
   location.reload;
 }
 
@@ -24,7 +24,7 @@ function toggleForm() {
     loginForm.style.display = "none";
     signupForm.style.display = "block";
     toggleButton.innerHTML = "Kayıt Ol / Giriş Yap";
-    toggleButton.style.backgroundColor = "#92a1d1";
+    toggleButton.style.backgroundColor = "#4ca2ce";
   }
 }
 

@@ -17,22 +17,25 @@ button {
 
 #header {
   padding: 10px;
-  color: #d36c6c;
+  color: #e64346;
   font-size: 26px;
   font-family: sans-serif;
   display: flex;
   justify-content: space-between;
 }
 #header button {
-  background-color:#92a1d1;
+  background-color:#4ca2ce;
 }
 #container {
   width: 770px;
 }
+#header #logoutButton {
+  background-color: #e64346;
+}
 #weekdays {
   width: 100%;
   display: flex;
-  color: #247BA0;
+  color: #015974;
 }
 #weekdays div {
   width: 100px;
@@ -105,16 +108,14 @@ button {
   border: 2px solid red;
 }
 #cancelButton, #deleteButton {
-  background-color: #d36c6c;
+  float:right;
+  background-color: #e64346;
+}     
+#addButton, #saveButton {
+  background-color: #379b6d;
 }
-#saveEditedButton {
-  background-color: #61b7d6; /* Dilediğiniz rengi buraya yazın */
-}
-#editButton {
-  background-color: rgb(131, 218, 189);
-}
-#saveButton, #closeButton {
-  background-color: #92a1d1;
+#closeButton {
+  background-color: #4ca2ce;
 }
 #eventText {
   font-size: 14px;

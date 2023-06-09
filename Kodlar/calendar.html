@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hatırlatıcı Takvim</title>
-
-    <link rel="stylesheet" href="Takvim.css">
+    <link rel="stylesheet" href="calendar.css">
   </head>
-  <body>
-    
-    <div id="container">
-      
+  <body>  
+    <div id="container">  
+
       <div id="header">
-
         <button id="logoutButton">Çıkış Yap</button>
-
         <div id="monthDisplay"></div>
         <div>
           <button id="backButton">Önceki</button>
@@ -37,10 +33,9 @@
 
     <div id="newEventModal">
       <h2>Yeni Etkinlik</h2>
-
-      <input id="eventTitleInput" placeholder="Etkinlik Başlığı" />
+      <input id="eventTitleInput" placeholder="Etkinlik Açıklaması" />
       <input id="eventTimeInput" type="time" />
-      <button id="saveButton">Kaydet</button>
+      <button id="saveButton">Ekle</button>
       <button id="cancelButton">İptal Et</button>
     </div>
     
@@ -49,13 +44,14 @@
       
       <p id="eventText"></p>
       
+      <button id="editButton"></button>
+      <button id="addButton">Ekle</button>  
       <button id="deleteButton">Sil</button>
-      <button id="editButton">Düzenle</button> 
       <button id="closeButton">Kapat</button>
     </div>
 
     <div id="modalBackDrop"></div>
 
-    <script src="Takvim.js"></script>
+    <script src="calendar.js"></script>
   </body>
 </html>

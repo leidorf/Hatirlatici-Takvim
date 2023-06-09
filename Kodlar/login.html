@@ -7,20 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giriş Yapma</title>
 </head>
-<body onload="showTime()">
-
-  <script src="login.css"></script>
-
+<body onload="showTime()">  
   <span id="clock"></span>
-  
   <img id="clock_img" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/clock_hour_minute_second_time_timer_watch_icon_123193.png">
-
-  <img style="opacity: 875%; z-index: -1; height: 450px; width: 750px; top: 18%; right: 0px; position: absolute;" src="https://www.valueresearchonline.com/content-assets/images/51993_calendar__w660__.jpg" alt="Takvim Fotoğrafı">
+  <img id="backgroundImage" src="https://www.valueresearchonline.com/content-assets/images/51993_calendar__w660__.jpg" alt="Takvim Fotoğrafı">
   
-  <p style="font-size: 300%; color: #000000c4; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hatırlatıcı Takvim</p>
   
-  <div style="text-align: center;">
-    <button id="toggle-button" onclick="toggleForm()" style="font-size: medium; float: left; border-radius: 0%; width: 40.5%;">Giriş Yap / Kayıt Ol</button>
+  <div>
+    <p id="header">Hatırlatıcı Takvim</p>
+    <button id="toggle-button" onclick="toggleForm()">Giriş Yap / Kayıt Ol</button>
   </div>
   
   <div class="spacer"></div>
@@ -28,8 +23,7 @@
   <form action="action_page.php" method="post" id="login-form">
     
     <div class="imgcontainer">
-      <img src="https://pic.onlinewebfonts.com/svg/img_550781.png" alt="Avatar" class="avatar"
-      style="height: 125px; width: 125px;">
+      <img src="https://pic.onlinewebfonts.com/svg/img_550781.png" alt="Avatar" class="avatar">
     </div>
     
     <div class="container">
@@ -39,12 +33,12 @@
       <label for="psw"><b>Şifre</b></label>
       <input type="password" placeholder="Şifrenizi Giriniz" name="psw" required>
       
-      <button type="submit" style="font-size: medium;">Giriş</button>
+      <button type="submit">Giriş</button>
       
     </div>
   </form> 
   
-  <form  id="signup-form" style="display: none;">
+  <form  id="signup-form">
     <div class="container">
       <h1>Kayıt Ol</h1>
       <p>Hesap oluşturmak için lütfen gerekli alanları doldurunuz.</p>
@@ -63,9 +57,10 @@
       <input type="password" placeholder="Şifrenizi Doğrulayınız" name="psw-repeat" required>
   
       <div class="clearfix">
-        <button id="signupButton" type="submit" class="signupbtn" style="font-size: medium; background-color:#92a1d1 ;">Kayıt Ol</button>
+        <button id="signupButton">Kayıt Ol</button>
       </div>
     </div>
   </form> 
+  <script src="login.js"></script>
 </body>
 </html>

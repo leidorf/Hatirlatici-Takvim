@@ -9,7 +9,7 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const eventTimeInput = document.getElementById('eventTimeInput');
-const weekdays = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+const weekdays = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
 const monthNames = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 
 events.push({
@@ -50,8 +50,6 @@ function editModal() {
   }
 }
 
-
-
 function saveEditedEvent(editedEvent) {
   const eventTitleInput = document.querySelector('#eventText input[type="text"]');
   const eventTimeInput = document.querySelector('#eventText input[type="time"]');
@@ -72,30 +70,68 @@ function saveEditedEvent(editedEvent) {
 function openModal(date) {
   clicked = date;
 
-  const eventForDay = events.find(e => e.date === clicked);
+  const eventForDay = events.filter(e => e.date === clicked);
 
-  if (eventForDay) {
+  if (eventForDay.length > 0) {
     const eventText = document.getElementById('eventText');
     eventText.innerHTML = '';
 
-    const eventTitleSpan = document.createElement('span');
-    eventTitleSpan.innerText = eventForDay.title;
-    eventText.appendChild(eventTitleSpan);
+    for (let i = 0; i < eventForDay.length; i++) {
+      const eventDiv = document.createElement('div');
+      eventDiv.classList.add('event');
 
-    const eventTimeSpan = document.createElement('span');
-    eventTimeSpan.innerText = eventForDay.time;
-    eventText.appendChild(document.createTextNode(' - '));
-    eventText.appendChild(eventTimeSpan);
+      const eventTitleSpan = document.createElement('span');
+      eventTitleSpan.innerText = eventForDay[i].title;
+      eventDiv.appendChild(eventTitleSpan);
+
+      if (eventForDay[i].time) {
+        const eventTimeSpan = document.createElement('span');
+        eventTimeSpan.innerText = eventForDay[i].time;
+        eventDiv.appendChild(document.createTextNode(' - '));
+        eventDiv.appendChild(eventTimeSpan);
+      }
+
+      eventDiv.addEventListener('click', () => {
+        editEvent(eventForDay[i]);
+      });
+
+      eventText.appendChild(eventDiv);
+    }
 
     deleteEventModal.style.display = 'block';
   } else {
     newEventModal.style.display = 'block';
-    eventTimeInput.value = ''; // Reset the time input value
+    eventTitleInput.value = '';
+    eventTimeInput.value = '';
   }
 
   backDrop.style.display = 'block';
 }
 
+function editEvent(event) {
+  eventTitleInput.value = event.title;
+  eventTimeInput.value = event.time;
+  newEventModal.style.display = 'block';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'block';
+
+  document.getElementById('saveButton').removeEventListener('click', saveEvent);
+  document.getElementById('saveButton').addEventListener('click', saveEditedEvent);
+
+  function saveEditedEvent() {
+    if (eventTitleInput.value) {
+      eventTitleInput.classList.remove('error');
+
+      event.title = eventTitleInput.value;
+      event.time = eventTimeInput.value;
+
+      localStorage.setItem('events', JSON.stringify(events));
+      closeModal();
+    } else {
+      eventTitleInput.classList.add('error');
+    }
+  }
+}
 
 function load() {
   const dt = new Date();
@@ -107,7 +143,7 @@ function load() {
   const day = dt.getDate();
   const month = dt.getMonth();
   const year = dt.getFullYear();
-  const firstDayOfMonth = new Date(year, month, 1);
+  const firstDayOfMonth = new Date(year, month, 0);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const paddingDays = firstDayOfMonth.getDay();
 
@@ -171,21 +207,81 @@ function closeModal() {
 }
 
 function saveEvent() {
-  if (eventTitleInput.value) {
-    eventTitleInput.classList.remove('error');
+  const eventTitleInput = document.getElementById('eventTitleInput');
+  const eventTimeInput = document.getElementById('eventTimeInput');
 
-    events.push({
-      date: clicked,
-      title: eventTitleInput.value,
-      time: eventTimeInput.value
-    });
+  const title = eventTitleInput.value;
+  const time = eventTimeInput.value;
+
+  if (title && time) {
+    const existingEvents = events.filter(e => e.date === clicked);
+
+    if (existingEvents.length > 0) {
+      for (let i = 0; i < existingEvents.length; i++) {
+        existingEvents[i].title = title;
+        existingEvents[i].time = time;
+
+        setReminder(clicked, time); // Hatırlatıcıyı güncelle
+      }
+    } else {
+      events.push({
+        date: clicked,
+        title: title,
+        time: time
+      });
+
+      setReminder(clicked, time); // Hatırlatıcıyı ayarla
+    }
 
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
   } else {
-    eventTitleInput.classList.add('error');
+    // Gerekli alanlar boşsa kullanıcıyı uyarabilirsiniz.
   }
 }
+
+function setReminder(date, time) {
+  const dateTimeParts = time.split(':');
+  const hour = parseInt(dateTimeParts[0]);
+  const minute = parseInt(dateTimeParts[1]);
+
+  const reminderDate = new Date(date);
+  reminderDate.setHours(hour, minute);
+
+  const now = new Date();
+
+  if (reminderDate > now) {
+    const timeDifference = reminderDate.getTime() - now.getTime();
+
+    setTimeout(() => {
+      showReminderNotification(date, time);
+    }, timeDifference);
+  }
+}
+
+function showReminderNotification(date, time) {
+  const options = {
+    body: 'Etkinlik Hatırlatıcısı: ' + time,
+    icon: 'https://pin.it/6LBrl1n'
+  };
+
+  if (Notification.permission === 'granted') {
+    new Notification('Etkinlik Hatırlatıcısı: ' + date, options);
+  } else if (Notification.permission !== 'denied') {
+    Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        new Notification('Etkinlik Hatırlatıcısı: ' + date, options);
+      }
+    });
+  }
+}
+
+// Hatırlatıcıları etkinleştirmek için izin isteme işlemi
+if (Notification.permission !== 'granted') {
+  Notification.requestPermission();
+}
+
+
 
 function deleteEvent() {
   events = events.filter(e => e.date !== clicked);
@@ -194,7 +290,7 @@ function deleteEvent() {
 }
 
 function logout(){
-   window.location.href = 'http://127.0.0.1:3000/Hatirlatici Takvim/Kodlar/Giris Ekrani.html';
+   window.location.href = 'http://127.0.0.1:3000/Hatirlatici Takvim/Kodlar/login.html';
 }
 
 function initButtons() {
@@ -211,7 +307,9 @@ function initButtons() {
   });
 
   document.getElementById('saveButton').addEventListener('click', saveEvent);
-  document.getElementById('editButton').addEventListener('click',editModal);
+  document.getElementById('editButton').style.display = 'none';
+  document.getElementById('addButton').addEventListener('click', openModal);
+
   document.getElementById('cancelButton').addEventListener('click', closeModal);
   document.getElementById('deleteButton').addEventListener('click', deleteEvent);
   document.getElementById('closeButton').addEventListener('click', closeModal);

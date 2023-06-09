@@ -1,7 +1,8 @@
  /* Bordered form */
  form {
     border: 3px solid #f1f1f1;
-    width: 40%;
+    max-width: 30%;
+    min-width: 200px;
     margin: 0 auto;
     float: left;
     font-family: sans-serif;
@@ -17,23 +18,48 @@
     box-sizing: border-box;
   }
   
+  button[type=submit]{
+    font-size: medium;
+  }
+
+  #signup-form{
+    display: none;
+  }
+
+  #backgroundImage{
+    opacity: 875%; 
+    z-index: -1; 
+    height: 450px; 
+    width: 750px; 
+    top: 18%; 
+    right: 0px; 
+    position: absolute;
+  }
+
+  #header{
+    font-size: 300%; 
+    color: black; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  }
+
   #clock {
     position: fixed;
     top: 10px;
     right: 10px;
     font-size: 25px;
-    color: #000000;
+    color: black;
     background-color: #ffffff;
     padding: 5px 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   #clock_img {
     position: fixed;
-    top: 15px;
-    right: 112px;
+    top: 18px;
+    right: 117px;
     vertical-align: middle;
-    height: 29px;
-    width: 29px;
+    height: 30px;
+    width: 30px;
   }
 
   /* Set a style for all buttons */
@@ -53,6 +79,20 @@
     opacity: 0.8;
   }
   
+  #toggle-button{
+    font-size: medium; 
+    float: left; 
+    border-radius: 0%; 
+    max-width: 30.3%;
+    min-width: 200px;
+    text-align: center;
+  }
+
+  #signupButton{
+    font-size: medium; 
+    background-color:#4ca2ce ;
+}
+
   .centered-button {
     width: 20%;
     margin: 0, auto; 
@@ -66,7 +106,8 @@
   
   /* Avatar image */
   img.avatar {
-    width: 40%;
+    height: 125px; 
+    width: 125px;
     border-radius: 50%;
   }
   
