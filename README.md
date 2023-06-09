@@ -23,6 +23,6 @@ Etkinlik gününe tıkladığınızda açılan etkinlik ekranında etkinliğin �
 Etkinlik ekranındaki en sağdaki "Sil" butonu ile etkinliği silebilirsiniz.
 
 # Kullanılan Teknolojiler
-Uygulamanın daha rahat geliştirilmesi için web ortamı tercih edilmiştir. 
-<br>Frontend'de HTML, CSS ve JS; veritabanı olarak ise NodeJS ve MySQL kullanılmıştır. 
+Uygulamanın daha rahat geliştirilmesi için web ortamı tercih edilmiştir. Uygulamanın önyüzü VSCodium'da geliştirilmiştir.
+<br>Önyüzde HTML, CSS ve JS; veritabanında ise NodeJS ve MySQL kullanılmıştır. 
 
