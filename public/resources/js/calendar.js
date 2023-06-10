@@ -237,7 +237,7 @@ function deleteEvent() {
 }
 
 function logout() {
-	window.location.href = 'http://127.0.0.1:3000/Hatirlatici Takvim/Kodlar/login.html';
+	window.location.href = 'http://127.0.0.1:3000/hatirlatici-takvim/index.html';
 }
 
 function initButtons() {
