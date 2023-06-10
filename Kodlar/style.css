@@ -1,0 +1,260 @@
+body {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  background-color: white;
+}
+
+button {
+  width: 75px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px gray;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  
+  color: white;
+  background-color: #379b6d;
+}
+button:hover {
+  opacity: 0.8;
+}
+
+#titlenButton{
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#login-form, #signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 110px;
+  width: 500px;
+}
+
+#title {
+    font-size: 300%;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    display: block;
+    margin-top: 5%;
+    margin-bottom: 20px;
+}
+
+#loginButton, #signupButton, #toggleButton{
+  font-size: large; 
+  border-radius: 0%; 
+  width: 100%;
+  height: auto;
+  text-align: center;
+  display: block;
+}
+
+#cancelButton, #deleteButton {
+  float:right;
+  background-color: #e64346;
+}     
+
+#header #logoutButton {
+  background-color: #e64346;
+}
+
+#addButton, #saveButton {
+  background-color: #379b6d;
+}
+
+#closeButton, #header button, #signupButton {
+  background-color: #4ca2ce;
+}
+
+#header {
+  padding: 10px;
+  color: #e64346;
+  font-size: 26px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+#container {
+  width: 770px;
+}
+
+#weekdays {
+  width: 100%;
+  display: flex;
+  color: #015974;
+}
+
+#weekdays div {
+  width: 100px;
+  padding: 10px;
+}
+
+#calendar {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day {
+  width: 100px;
+  padding: 10px;
+  height: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: white;
+  margin: 5px;
+  box-shadow: 0px 0px 3px #CBD4C2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.day:hover {
+  background-color: #e8faed;
+}
+
+.day + #currentDay {
+  background-color:#e8f4fa;
+}
+
+.event {
+  font-size: 10px;
+  padding: 3px;
+  background-color: #58bae4;
+  color: white;
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+}
+
+.padding {
+  cursor: default !important;
+  background-color: #FFFCFF !important;
+  box-shadow: none !important;
+}
+
+#newEventModal, #deleteEventModal {
+  display: none;
+  z-index: 20;
+  padding: 25px;
+  background-color: #e8f4fa;
+  box-shadow: 0px 0px 3px black;
+  border-radius: 5px;
+  width: 350px;
+  top: 100px;
+  left: calc(50% - 175px);
+  position: absolute;
+  font-family: sans-serif;
+}
+
+#eventTitleInput {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+}
+
+#eventTitleInput.error {
+  border: 2px solid red;
+}
+
+#eventText {
+  font-size: 14px;
+}
+
+#modalBackDrop {
+  display: none;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+}
+
+form {
+  border: 3px solid #ffffff;
+  max-width: 30%;
+  min-width: 200px;
+  margin: 0 auto;
+  font-family: sans-serif;
+  background-color: #ffffffcb;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#backgroundImage {
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: auto;
+  max-width: 1280px;
+  max-height: 960px;
+}
+
+
+#clock {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  color: black;
+  background-color: #ffffff;
+  padding: 5px 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#clock_img {
+  position: fixed;
+  top: 18px;
+  right: 117px;
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  height: 125px; 
+  width: 125px;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+  position: relative;
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+}
