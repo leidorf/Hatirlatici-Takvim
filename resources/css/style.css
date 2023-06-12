@@ -143,7 +143,7 @@ button:hover {
 
 #newEventModal, #deleteEventModal {
   display: none;
-  z-index: 20;
+  z-index: 9999;
   padding: 25px;
   background-color: #e8f4fa;
   box-shadow: 0px 0px 3px black;
@@ -154,6 +154,11 @@ button:hover {
   position: absolute;
   font-family: sans-serif;
 }
+
+#deleteEventModal{
+  z-index: 15;
+}
+
 
 #eventTitleInput {
   padding: 10px;

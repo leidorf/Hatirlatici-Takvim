@@ -1,6 +1,3 @@
-document.getElementById('signupButton').onclick = function() {
-	location.reload;
-}
 window.addEventListener("DOMContentLoaded", function() {
 	var loginForm = document.getElementById("login-form");
 	var signupForm = document.getElementById("signup-form");

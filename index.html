@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <link rel="stylesheet" type="text/css"   href="/hatirlatici-takvim/public/resources/css/style.css">    
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giriş Yapma</title>
+  <link rel="stylesheet" href="/hatirlatici-takvim/resources/css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giriş Yapma</title>
 </head>
-<body onload="showTime()">  
+<body onload="showTime()">
   <span id="clock"></span>
   <img id="clock_img" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/clock_hour_minute_second_time_timer_watch_icon_123193.png">
   <img id="backgroundImage" src="https://img.freepik.com/free-vector/appointment-booking-with-calendar-telephone_23-2148561971.jpg?w=1380&t=st=1686341592~exp=1686342192~hmac=3b55b4c3ca07fcb96e8710e6619a40c7d2472e8370e02a7708e5a8b67d1ab6d8" alt="Takvim Fotografi">
-  
+
   <div id="titlenButton">
     <p id="title">Hatırlatıcı Takvim</p>
     <button id="toggleButton" onclick="toggleForm()">Giriş Yap / Kayıt Ol</button>
   </div>
 
-  <form action="action_page.php" method="post" id="login-form">
+  <form action="/kayit" method="post" id="login-form">
     <div class="imgcontainer">
       <img src="https://pic.onlinewebfonts.com/svg/img_550781.png" alt="Avatar" class="avatar">
     </div>
-    
+
     <div class="container">
       <label for="uname"><b>Kullanıcı Adı</b></label>
-      <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="uname" required>
-      
+      <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="kullaniciAdi" required>
+
       <label for="psw"><b>Şifre</b></label>
-      <input type="password" placeholder="Şifrenizi Giriniz" name="psw" required>
-      
+      <input type="password" placeholder="Şifrenizi Giriniz" name="kullaniciParola" required>
+
       <button id="loginButton" type="submit">Giriş</button>
     </div>
-  </form> 
-  
-  <form  id="signup-form">
+  </form>
+
+  <form action="/kayit" method="post" id="signup-form">
     <div class="container">
       <p id="title">Kayıt Ol</p>
       <p>Hesap oluşturmak için lütfen gerekli alanları doldurunuz.</p>
       <hr>
-      
+
       <label for="kullaniciAdi"><b>Kullanıcı Adı</b></label>
       <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="kullaniciAdi" required>
 
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Email Adresinizi Giriniz" name="email" required>
-  
+      <input type="text" placeholder="Email Adresinizi Giriniz" name="kullaniciEmail" required>
+
       <label for="psw"><b>Şifre</b></label>
-      <input type="password" placeholder="Şifrenizi Giriniz" name="psw" required>
-  
+      <input type="password" placeholder="Şifrenizi Giriniz" name="kullaniciParola" required>
+
       <label for="psw-repeat"><b>Şifre Doğrulama</b></label>
-      <input type="password" placeholder="Şifrenizi Doğrulayınız" name="psw-repeat" required>
-  
+      <input type="password" placeholder="Şifrenizi Doğrulayınız" name="parolaDogrulama" required>
+
       <div class="clearfix">
-        <button id="signupButton">Kayıt Ol</button>
+        <button id="signupButton" type="submit">Kayıt Ol</button>
       </div>
     </div>
-  </form> 
-  <script src="/hatirlatici-takvim/resources/js/login.js"></script>
+  </form>
+  <script src="\hatirlatici-takvim\resources\js\login.js"></script>
 </body>
 </html>
