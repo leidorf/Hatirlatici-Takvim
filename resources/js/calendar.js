@@ -6,14 +6,14 @@ const calendar = document.getElementById('calendar');
 const newEventModal = document.getElementById('newEventModal');
 const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
-const eventTitleInput = document.getElementById('eventTitleInput');
-const eventTimeInput = document.getElementById('eventTimeInput');
+const eventDescription = document.getElementById('eventDescription');
+const eventTime = document.getElementById('eventTime');
 const weekdays = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'];
 const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 events.push({
 	date: clicked,
-	title: eventTitleInput.value,
-	time: eventTimeInput.value
+	title: eventDescription.value,
+	time: eventTime.value
 });
 
 function getMonthName(month) {
@@ -25,15 +25,15 @@ function editModal() {
 	if (eventForDay) {
 		const eventText = document.getElementById('eventText');
 		eventText.innerHTML = '';
-		const eventTitleInput = document.createElement('input');
-		eventTitleInput.type = 'text';
-		eventTitleInput.value = eventForDay.title;
-		eventText.appendChild(eventTitleInput);
-		const eventTimeInput = document.createElement('input');
-		eventTimeInput.type = 'time';
-		eventTimeInput.value = eventForDay.time;
+		const eventDescription = document.createElement('input');
+		eventDescription.type = 'text';
+		eventDescription.value = eventForDay.title;
+		eventText.appendChild(eventDescription);
+		const eventTime = document.createElement('input');
+		eventTime.type = 'time';
+		eventTime.value = eventForDay.time;
 		eventText.appendChild(document.createElement('br'));
-		eventText.appendChild(eventTimeInput);
+		eventText.appendChild(eventTime);
 		const saveButton = document.createElement('button');
 		saveButton.innerText = 'Kaydet';
 		saveButton.id = 'saveEditedButton'; // ID eklendi
@@ -44,16 +44,16 @@ function editModal() {
 }
 
 function saveEditedEvent(editedEvent) {
-	const eventTitleInput = document.querySelector('#eventText input[type="text"]');
-	const eventTimeInput = document.querySelector('#eventText input[type="time"]');
-	if (eventTitleInput.value) {
-		eventTitleInput.classList.remove('error');
-		editedEvent.title = eventTitleInput.value;
-		editedEvent.time = eventTimeInput.value;
+	const eventDescription = document.querySelector('#eventText input[type="text"]');
+	const eventTime = document.querySelector('#eventText input[type="time"]');
+	if (eventDescription.value) {
+		eventDescription.classList.remove('error');
+		editedEvent.title = eventDescription.value;
+		editedEvent.time = eventTime.value;
 		localStorage.setItem('events', JSON.stringify(events));
 		closeModal();
 	} else {
-		eventTitleInput.classList.add('error');
+		eventDescription.classList.add('error');
 	}
 }
 
@@ -83,15 +83,15 @@ function openModal(date) {
 		deleteEventModal.style.display = 'block';
 	} else {
 		newEventModal.style.display = 'block';
-		eventTitleInput.value = '';
-		eventTimeInput.value = '';
+		eventDescription.value = '';
+		eventTime.value = '';
 	}
 	backDrop.style.display = 'block';
 }
 
 function editEvent(event) {
-	eventTitleInput.value = event.title;
-	eventTimeInput.value = event.time;
+	eventDescription.value = event.title;
+	eventTime.value = event.time;
 	newEventModal.style.display = 'block';
 	deleteEventModal.style.display = 'none';
 	backDrop.style.display = 'block';
@@ -99,14 +99,14 @@ function editEvent(event) {
 	document.getElementById('saveButton').addEventListener('click', saveEditedEvent);
 
 	function saveEditedEvent() {
-		if (eventTitleInput.value) {
-			eventTitleInput.classList.remove('error');
-			event.title = eventTitleInput.value;
-			event.time = eventTimeInput.value;
+		if (eventDescription.value) {
+			eventDescription.classList.remove('error');
+			event.title = eventDescription.value;
+			event.time = eventTime.value;
 			localStorage.setItem('events', JSON.stringify(events));
 			closeModal();
 		} else {
-			eventTitleInput.classList.add('error');
+			eventDescription.classList.add('error');
 		}
 	}
 }
@@ -158,20 +158,20 @@ function load() {
 }
 
 function closeModal() {
-	eventTitleInput.classList.remove('error');
+	eventDescription.classList.remove('error');
 	newEventModal.style.display = 'none';
 	deleteEventModal.style.display = 'none';
 	backDrop.style.display = 'none';
-	eventTitleInput.value = '';
+	eventDescription.value = '';
 	clicked = null;
 	load();
 }
 
 function saveEvent() {
-	const eventTitleInput = document.getElementById('eventTitleInput');
-	const eventTimeInput = document.getElementById('eventTimeInput');
-	const title = eventTitleInput.value;
-	const time = eventTimeInput.value;
+	const eventDescription = document.getElementById('eventDescription');
+	const eventTime = document.getElementById('eventTime');
+	const title = eventDescription.value;
+	const time = eventTime.value;
 	if (title && time) {
 		const existingEvents = events.filter(e => e.date === clicked);
 		if (existingEvents.length > 0) {

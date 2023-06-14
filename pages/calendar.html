@@ -31,17 +31,20 @@
       <div id="calendar"></div>
     </div>
 
-    <div id="newEventModal">
-      <h2>Yeni Etkinlik</h2>
-      <input id="etkinlikAciklama" placeholder="Etkinlik Açıklaması" />
-      <input id="etkinlikZaman" type="time" />
-      <button id="saveButton">Kaydet</button>
-      <button id="cancelButton">İptal Et</button>
-    </div>
-    
+    <form action="/event" method="post">
+      <div id="newEventModal">
+        <h2>Yeni Etkinlik</h2>
+        <input id="eventDescription" type="text" placeholder="Etkinlik Açıklaması">
+        <input id="eventTime" type="time">
+        <div>
+          <button id="saveButton" type="submit">Kaydet</button>
+          <button id="cancelButton">İptal Et</button>
+        </div>
+      </div>
+    </form>
+
     <div id="deleteEventModal">
       <h2>Etkinlik</h2>
-      
       <p id="eventText"></p>
       
       <button id="editButton"></button>

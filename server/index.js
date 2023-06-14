@@ -42,7 +42,7 @@ app.post('/kayit', (req, res) => {
     res.status(400).send("Şifreler uyuşmuyor");
     return;
   }
-  db.query('INSERT INTO user (username, email, password, password_repeat) VALUES (?, ?, ?, ?)', [username, email, password, password_repeat], (err, result) => {
+  db.query('INSERT INTO users (username, email, password, password_repeat) VALUES (?, ?, ?, ?)', [username, email, password, password_repeat], (err, result) => {
     if (err) {
       console.error('Kullanıcı kaydedilirken bir hata oluştu:', err);
       res.status(500).send('Kullanıcı kaydedilirken bir hata oluştu');
@@ -57,7 +57,7 @@ app.post('/kayit', (req, res) => {
 app.post('/giris', (req, res) => {
   const { username, password } = req.body;
 
-  db.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], (err, result) => {
+  db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, result) => {
     if (err) {
       console.error('Kullanıcı sorgulanırken bir hata oluştu:', err);
       res.status(500).send('Kullanıcı sorgulanırken bir hata oluştu');
@@ -73,6 +73,30 @@ app.post('/giris', (req, res) => {
   });
 });
 
+app.post('/event', (req, res) => {
+  const eventDescription = req.body.eventDescription;
+  const eventDate = req.body.eventDate;
+  const eventTime = req.body.eventTime;
+
+  console.log('eventDescription:', eventDescription);
+  console.log('eventDate:', eventDate);
+  console.log('eventTime:', eventTime);
+
+  const query = 'INSERT INTO events (eventDescription, eventDate, eventTime) VALUES (?, ?, ?)';
+  db.query(query, [eventDescription, eventDate, eventTime], (err, result) => {
+    console.log('Query:', query);
+    console.log('Parameters:', [eventDescription, eventDate, eventTime]);
+    console.log('Error:', err);
+    console.log('Result:', result);
+    if (err) {
+      console.error('Database error:', err);
+      res.status(500).json({ error: 'Database error' });
+    } else {
+      res.status(200).json({ message: 'Event created successfully' });
+    }
+  });
+  
+});
 
 
 // MySQL bağlantısıyla ilgili bilgilendirme yapar
