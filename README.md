@@ -2,7 +2,7 @@
 Tanımlanan etkinliklerin zamanı geldiğinde hatırlatma yapan web tabanlı takvim uygulaması.
 
 ## Özellikler
-- Kullanıcı bilgileri ile sisteme kayıt 
+- Kullanıcı bilgileri ile sisteme kayıt
 - Kullanıcı bilgileri ile sisteme giriş
 - İstenilen zamana etkinlik ekleme ve etkinliği düzenleme
 - Etkinlik zamanı yaklaştığında sistem tarafından uyarı bildirimi gönderilmesi
@@ -24,5 +24,5 @@ Etkinlik ekranındaki en sağdaki "Sil" butonu ile etkinliği silebilirsiniz.
 
 # Kullanılan Teknolojiler
 Uygulamanın daha rahat geliştirilmesi için web ortamı tercih edilmiştir. Uygulamanın önyüzü VSCodium'da geliştirilmiştir.
-<br>Önyüzde HTML, CSS ve JS; veritabanında ise NodeJS ve MySQL kullanılmıştır. 
+<br>Önyüzde; HTML, CSS ve JS; veritabanında ise NodeJS ve MySQL kullanılmıştır. 
 
