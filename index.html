@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Giriş Yapma</title>
+  <title>Hatırlatıcı Takvim</title>
 </head>
 <body onload="showTime()">
   <span id="clock"></span>
@@ -17,17 +17,17 @@
     <button id="toggleButton" onclick="toggleForm()">Giriş Yap / Kayıt Ol</button>
   </div>
 
-  <form action="/kayit" method="post" id="login-form">
+  <form action="/giris" method="post" id="login-form">
     <div class="imgcontainer">
       <img src="https://pic.onlinewebfonts.com/svg/img_550781.png" alt="Avatar" class="avatar">
     </div>
 
     <div class="container">
-      <label for="uname"><b>Kullanıcı Adı</b></label>
-      <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="kullaniciAdi" required>
+      <label for="username"><b>Kullanıcı Adı</b></label>
+      <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="username" required>
 
-      <label for="psw"><b>Şifre</b></label>
-      <input type="password" placeholder="Şifrenizi Giriniz" name="kullaniciParola" required>
+      <label for="password"><b>Şifre</b></label>
+      <input type="password" placeholder="Şifrenizi Giriniz" name="password" required>
 
       <button id="loginButton" type="submit">Giriş</button>
     </div>
@@ -39,17 +39,17 @@
       <p>Hesap oluşturmak için lütfen gerekli alanları doldurunuz.</p>
       <hr>
 
-      <label for="kullaniciAdi"><b>Kullanıcı Adı</b></label>
-      <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="kullaniciAdi" required>
+      <label for="username"><b>Kullanıcı Adı</b></label>
+      <input type="text" placeholder="Kullanıcı Adınızı Giriniz" name="username" required>
 
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Email Adresinizi Giriniz" name="kullaniciEmail" required>
+      <input type="text" placeholder="Email Adresinizi Giriniz" name="email" required>
 
-      <label for="psw"><b>Şifre</b></label>
-      <input type="password" placeholder="Şifrenizi Giriniz" name="kullaniciParola" required>
+      <label for="password"><b>Şifre</b></label>
+      <input type="password" placeholder="Şifrenizi Giriniz" name="password" required>
 
-      <label for="psw-repeat"><b>Şifre Doğrulama</b></label>
-      <input type="password" placeholder="Şifrenizi Doğrulayınız" name="parolaDogrulama" required>
+      <label for="password_repeat"><b>Şifre Doğrulama</b></label>
+      <input type="password" placeholder="Şifrenizi Doğrulayınız" name="password_repeat" required>
 
       <div class="clearfix">
         <button id="signupButton" type="submit">Kayıt Ol</button>

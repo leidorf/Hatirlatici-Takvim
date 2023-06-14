@@ -13,6 +13,10 @@ app.use('/hatirlatici-takvim', express.static(path.join(__dirname, '..')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
+app.get('/calendar', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'pages', 'calendar.html'));
+});
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
@@ -26,20 +30,19 @@ const db = mysql.createConnection({
   database: 'hatirlatici-takvim'
 });
 
-// Kullanıcı kaydını yapar
+// Kullanıcı kaydını yapma
 app.post('/kayit', (req, res) => {
-  const kullaniciAdi = req.body.kullaniciAdi;
-  const kullaniciParola = req.body.kullaniciParola;
-  const kullaniciEmail = req.body.kullaniciEmail;
-  const parolaDogrulama = req.body.parolaDogrulama;
+  const username = req.body.username;
+  const password = req.body.password;
+  const password_repeat = req.body.password_repeat;
+  const email = req.body.email;
 
   // Şifre doğrulama
-  if (kullaniciParola !== parolaDogrulama) {
+  if (password !== password_repeat) {
     res.status(400).send("Şifreler uyuşmuyor");
     return;
   }
-
-  db.query('INSERT INTO kullanicibilgileri (kullaniciAdi, kullaniciEmail, kullaniciParola, parolaDogrulama) VALUES (?, ?, ?, ?)', [kullaniciAdi, kullaniciEmail, kullaniciParola, parolaDogrulama], (err, result) => {
+  db.query('INSERT INTO user (username, email, password, password_repeat) VALUES (?, ?, ?, ?)', [username, email, password, password_repeat], (err, result) => {
     if (err) {
       console.error('Kullanıcı kaydedilirken bir hata oluştu:', err);
       res.status(500).send('Kullanıcı kaydedilirken bir hata oluştu');
@@ -52,16 +55,16 @@ app.post('/kayit', (req, res) => {
 
 // Kullanıcı girişi
 app.post('/giris', (req, res) => {
-  const { kullaniciAdi, kullaniciParola } = req.body;
+  const { username, password } = req.body;
 
-  db.query('SELECT * FROM kullanicibilgileri WHERE kullaniciAdi = ? AND kullaniciParola = ?', [kullaniciAdi, kullaniciParola], (err, result) => {
+  db.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], (err, result) => {
     if (err) {
       console.error('Kullanıcı sorgulanırken bir hata oluştu:', err);
       res.status(500).send('Kullanıcı sorgulanırken bir hata oluştu');
     } else {
       if (result.length > 0) {
         console.log('Giriş başarılı');
-        res.status(200).send('Giriş başarılı');
+        res.redirect('/calendar'); // Yönlendirme işlemi
       } else {
         console.log('Geçersiz kullanıcı adı veya şifre');
         res.status(401).send('Geçersiz kullanıcı adı veya şifre');
@@ -69,6 +72,8 @@ app.post('/giris', (req, res) => {
     }
   });
 });
+
+
 
 // MySQL bağlantısıyla ilgili bilgilendirme yapar
 db.connect(function (err) {

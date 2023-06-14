@@ -186,7 +186,6 @@ function saveEvent() {
 				title: title,
 				time: time
 			});
-			setReminder(clicked, time); // Hatırlatıcıyı ayarla
 		}
 		localStorage.setItem('events', JSON.stringify(events));
 		closeModal();
@@ -210,26 +209,6 @@ function setReminder(date, time) {
 	}
 }
 
-function showReminderNotification(date, time) {
-	const options = {
-		body: 'Etkinlik Hatırlatıcısı: ' + time,
-		icon: 'https://pin.it/6LBrl1n'
-	};
-	if (Notification.permission === 'granted') {
-		new Notification('Etkinlik Hatırlatıcısı: ' + date, options);
-	} else if (Notification.permission !== 'denied') {
-		Notification.requestPermission().then(permission => {
-			if (permission === 'granted') {
-				new Notification('Etkinlik Hatırlatıcısı: ' + date, options);
-			}
-		});
-	}
-}
-// Hatırlatıcıları etkinleştirmek için izin isteme işlemi
-if (Notification.permission !== 'granted') {
-	Notification.requestPermission();
-}
-
 function deleteEvent() {
 	events = events.filter(e => e.date !== clicked);
 	localStorage.setItem('events', JSON.stringify(events));
@@ -237,7 +216,7 @@ function deleteEvent() {
 }
 
 function logout() {
-	window.location.href = 'http://127.0.0.1:3000/hatirlatici-takvim/index.html';
+	window.location.href = 'http://localhost:1015/';
 }
 
 function initButtons() {
