@@ -31,14 +31,16 @@
       <div id="calendar"></div>
     </div>
 
-    <form action="/event" method="post">
-      <div id="newEventModal">
+    <form action="/event" method="post" id="newEventModal">
+      <div>
         <h2>Yeni Etkinlik</h2>
-        <input id="eventDescription" type="text" placeholder="Etkinlik Açıklaması">
-        <input id="eventTime" type="time">
+        <input name="eventDescription" id="eventDescription" type="text" placeholder="Etkinlik Açıklaması">
+        <input name="eventTime" id="eventTime" type="time">
+        <input type="hidden" id="eventDate" name="eventDate">
+
         <div>
           <button id="saveButton" type="submit">Kaydet</button>
-          <button id="cancelButton">İptal Et</button>
+          <button id="cancelButton" type="submit">İptal Et</button>
         </div>
       </div>
     </form>
@@ -54,7 +56,10 @@
     </div>
 
     <div id="modalBackDrop"></div>
-
+    <form action="/event" method="post" id="newEventModal" style="display: none;"></form>
+    <div id="deleteEventModal" style="display: none;"></div>
+    <div id="modalBackDrop" style="display: none;"></div>
+      
     <script src="/hatirlatici-takvim/resources/js/calendar.js"></script>
   </body>
 </html>

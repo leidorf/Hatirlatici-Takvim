@@ -61,33 +61,34 @@ function openModal(date) {
 	clicked = date;
 	const eventForDay = events.filter(e => e.date === clicked);
 	if (eventForDay.length > 0) {
-		const eventText = document.getElementById('eventText');
-		eventText.innerHTML = '';
-		for (let i = 0; i < eventForDay.length; i++) {
-			const eventDiv = document.createElement('div');
-			eventDiv.classList.add('event');
-			const eventTitleSpan = document.createElement('span');
-			eventTitleSpan.innerText = eventForDay[i].title;
-			eventDiv.appendChild(eventTitleSpan);
-			if (eventForDay[i].time) {
-				const eventTimeSpan = document.createElement('span');
-				eventTimeSpan.innerText = eventForDay[i].time;
-				eventDiv.appendChild(document.createTextNode(' - '));
-				eventDiv.appendChild(eventTimeSpan);
-			}
-			eventDiv.addEventListener('click', () => {
-				editEvent(eventForDay[i]);
-			});
-			eventText.appendChild(eventDiv);
+	  const eventText = document.getElementById('eventText');
+	  eventText.innerHTML = '';
+	  for (let i = 0; i < eventForDay.length; i++) {
+		const eventDiv = document.createElement('div');
+		eventDiv.classList.add('event');
+		const eventTitleSpan = document.createElement('span');
+		eventTitleSpan.innerText = eventForDay[i].title;
+		eventDiv.appendChild(eventTitleSpan);
+		if (eventForDay[i].time) {
+		  const eventTimeSpan = document.createElement('span');
+		  eventTimeSpan.innerText = eventForDay[i].time;
+		  eventDiv.appendChild(document.createTextNode(' - '));
+		  eventDiv.appendChild(eventTimeSpan);
 		}
-		deleteEventModal.style.display = 'block';
+		eventDiv.addEventListener('click', () => {
+		  editEvent(eventForDay[i]);
+		});
+		eventText.appendChild(eventDiv);
+	  }
+	  deleteEventModal.style.display = 'block';
 	} else {
-		newEventModal.style.display = 'block';
-		eventDescription.value = '';
-		eventTime.value = '';
+	  newEventModal.style.display = 'block';
+	  eventDescription.value = '';
+	  eventTime.value = '';
 	}
-	backDrop.style.display = 'block';
-}
+	modalBackDrop.style.display = 'block';
+  }
+  
 
 function editEvent(event) {
 	eventDescription.value = event.title;
@@ -167,33 +168,47 @@ function closeModal() {
 	load();
 }
 
+
 function saveEvent() {
+	event.preventDefault();
 	const eventDescription = document.getElementById('eventDescription');
 	const eventTime = document.getElementById('eventTime');
+	const eventDate = new Date();
+	const eventDateInput = document.getElementById('eventDate');
+	eventDateInput.value = eventDate.toISOString().split('T')[0]; 
+
 	const title = eventDescription.value;
 	const time = eventTime.value;
-	if (title && time) {
-		const existingEvents = events.filter(e => e.date === clicked);
-		if (existingEvents.length > 0) {
-			for (let i = 0; i < existingEvents.length; i++) {
-				existingEvents[i].title = title;
-				existingEvents[i].time = time;
-				setReminder(clicked, time); // Hatırlatıcıyı güncelle
-			}
-		} else {
-			events.push({
-				date: clicked,
-				title: title,
-				time: time
-			});
+	if (title && time && eventDate) {
+	  const event = {
+		date: eventDate,
+		title: title,
+		time: time
+	  };
+	  fetch('/event', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(event)
+	  })
+		.then(response => {
+			// Başarıyla kaydedildi
+		  if (response.ok) {
+			closeModal();
 		}
-		localStorage.setItem('events', JSON.stringify(events));
-		closeModal();
+		// Hata oluştu, kullanıcıyı uyarabilirsiniz
+		 else {
+		  }
+		})
+		.catch(error => {
+		  // Hata oluştu, kullanıcıyı uyarabilirsiniz
+		});
 	} else {
-		// Gerekli alanlar boşsa kullanıcıyı uyarabilirsiniz.
+	  // Gerekli alanlar boşsa kullanıcıyı uyarabilirsiniz.
 	}
-}
-
+  }
+  
 function setReminder(date, time) {
 	const dateTimeParts = time.split(':');
 	const hour = parseInt(dateTimeParts[0]);

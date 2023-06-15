@@ -1,5 +1,4 @@
-body {
-  
+body { 
   display: flex;
   margin-top: 50px;
   justify-content: center;
@@ -7,18 +6,17 @@ body {
 }
 
 button {
-  
   width: 75px;
   cursor: pointer;
   box-shadow: 0px 0px 2px gray;
   border: none;
   outline: none;
   padding: 5px;
-  border-radius: 5px;
-  
+  border-radius: 5px; 
   color: white;
   background-color: #379b6d;
 }
+
 button:hover {
   opacity: 0.8;
 }
@@ -161,6 +159,9 @@ button:hover {
   z-index: 15;
 }
 
+#eventDate{
+display: none;
+}
 
 #eventTitleInput {
   padding: 10px;

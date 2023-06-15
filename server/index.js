@@ -1,25 +1,26 @@
 const mysql = require('mysql2');
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const port = 1015;
+const session = require('express-session');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/hatirlatici-takvim', express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '..')));
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 app.get('/calendar', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'pages', 'calendar.html'));
-});
-
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
 });
 
 // MySQL bağlantısını sağlar
@@ -32,12 +33,9 @@ const db = mysql.createConnection({
 
 // Kullanıcı kaydını yapma
 app.post('/kayit', (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const password_repeat = req.body.password_repeat;
-  const email = req.body.email;
+  const { username, password, password_repeat, email } = req.body;
 
-  // Şifre doğrulama
+  // Şifre tekrarı dogrulama
   if (password !== password_repeat) {
     res.status(400).send("Şifreler uyuşmuyor");
     return;
@@ -64,6 +62,7 @@ app.post('/giris', (req, res) => {
     } else {
       if (result.length > 0) {
         console.log('Giriş başarılı');
+        req.session.userID = result[0].id; // Kullanıcının kimliğini oturum nesnesine atama
         res.redirect('/calendar'); // Yönlendirme işlemi
       } else {
         console.log('Geçersiz kullanıcı adı veya şifre');
@@ -73,36 +72,27 @@ app.post('/giris', (req, res) => {
   });
 });
 
+// Etkinlik kaydetme
 app.post('/event', (req, res) => {
-  const eventDescription = req.body.eventDescription;
-  const eventDate = req.body.eventDate;
-  const eventTime = req.body.eventTime;
+  const { eventDescription, eventDate, eventTime } = req.body;
+  const userID = req.session.userID;
 
-  console.log('eventDescription:', eventDescription);
-  console.log('eventDate:', eventDate);
-  console.log('eventTime:', eventTime);
-
-  const query = 'INSERT INTO events (eventDescription, eventDate, eventTime) VALUES (?, ?, ?)';
-  db.query(query, [eventDescription, eventDate, eventTime], (err, result) => {
-    console.log('Query:', query);
-    console.log('Parameters:', [eventDescription, eventDate, eventTime]);
-    console.log('Error:', err);
-    console.log('Result:', result);
+  const query = 'INSERT INTO events (eventDescription, eventDate, eventTime, userID) VALUES (?, ?, ?, ?)';
+  db.query(query, [eventDescription, eventDate, eventTime, userID], (err, result) => {
     if (err) {
       console.error('Database error:', err);
-      res.status(500).json({ error: 'Database error' });
-    } else {
-      res.status(200).json({ message: 'Event created successfully' });
-    }
+    } 
   });
-  
 });
 
-
 // MySQL bağlantısıyla ilgili bilgilendirme yapar
-db.connect(function (err) {
+db.connect((err) => {
   if (err) {
     throw err;
   }
   console.log("Bağlantı kuruldu!");
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
