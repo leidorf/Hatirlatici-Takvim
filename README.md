@@ -1,11 +1,12 @@
 # Hatırlatıcı Takvim
-Tanımlanan etkinliklerin zamanı geldiğinde hatırlatma yapan web tabanlı takvim uygulaması.
+Bu proje, kullanıcıların takvimlerini yönetmelerine yardımcı olan basit bir web uygulamasıdır. Kullanıcılar, takvimde olaylar tanımlayabilir, takvimdeki olayları görüntüleyebilir, hatırlatmalar alabilir.
 
 ## Özellikler
-- Kullanıcı bilgileri ile sisteme kayıt
-- Kullanıcı bilgileri ile sisteme giriş
-- İstenilen zamana etkinlik ekleme ve etkinliği düzenleme
-- Etkinlik zamanı yaklaştığında sistem tarafından uyarı bildirimi gönderilmesi
+- Kullanıcılar sisteme kaydolabilir ve giriş yapabilir.
+- Takvimdeki belirli bir güne geçiş yapabilirsiniz.
+- Olayları tanımlayabilir, düzenleyebilir ve silebilirsiniz.
+- Tanımlanan olaylar zamanı geldiğinde hatırlatmalarla kullanıcılara bildirilir.
+
 
 # Nasıl Kullanılır?
 
@@ -22,7 +23,50 @@ Etkinlik gününe tıkladığınızda açılan etkinlik ekranında etkinliğin �
 ## Etkinlik Silme
 Etkinlik ekranındaki en sağdaki "Sil" butonu ile etkinliği silebilirsiniz.
 
-# Kullanılan Teknolojiler
-Uygulamanın daha rahat geliştirilmesi için web ortamı tercih edilmiştir. Uygulamanın önyüzü VSCodium'da geliştirilmiştir.
-<br>Önyüzde; HTML, CSS ve JS; veritabanında ise NodeJS ve MySQL kullanılmıştır. 
+## Ekran Görüntüleri
+- Uygulama Giriş Ekranı
+  
+![Ekran görüntüsü 2023-06-17 233824](https://github.com/leidorf/Hatirlatici-Takvim/assets/93585259/b3fbb2f1-efc6-4be1-90df-7f384032f83b)
 
+- Uygulama Ana Ekranı
+  
+![Ekran görüntüsü 2023-06-17 233846](https://github.com/leidorf/Hatirlatici-Takvim/assets/93585259/9615d2ea-00fa-4e09-bb99-cbaff8a720ce)
+
+## Proje Dosya Yapısı
+Projede, temel web uygulama dosya yapısı kullanılmıştır.
+
+```
+hatirlatici-takvim
+├── .gitattributes
+├── .gitignore
+├── index.html
+├── LICENSE
+├── README.md
+├── tree.txt
+├── pages
+│   └── calendar.html
+├── resources
+│   ├── css
+│   │   └── style.css
+│   └── js
+│       ├── calendar.js
+│       └── login.js
+└── server
+    ├── package-lock.json
+    ├── package.json
+    ├── server.js
+    ├── controllers
+    │   └── userController.js
+    └── db
+        └── dbConnection.js
+```
+
+# Kullanılan Teknolojiler
+- <b>Front-end:</b> HTML, CSS, JavaScript
+- <b>Back-end:</b> NodeJS
+- <b>Server:</b> MySQL
+
+Uygulamanın daha rahat geliştirilmesi için web ortamı tercih edilmiştir. Bu teknolojiler, Hatırlatıcı Takvim uygulamasının geliştirilmesinde kullanılan temel yapı taşlarıdır. HTML, CSS ve JavaScript ile kullanıcı arayüzü oluşturulurken, Node.js sunucu tarafı uygulamaları geliştirmek için kullanılır. MySQL ise verilerin güvenli ve etkili bir şekilde saklanmasını ve yönetilmesini sağlar.
+
+## Lisans
+Bu proje [The GNU General Public License](./LICENSE) altında lisanslanmıştır.
