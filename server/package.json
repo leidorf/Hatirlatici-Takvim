@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express-session": "^1.17.3",
     "mysql2": "^3.3.4",
     "sequelize": "^6.32.0"
   }

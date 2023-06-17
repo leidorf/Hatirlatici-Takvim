@@ -1,10 +1,12 @@
-body { 
+/* Genel stil */
+body {
   display: flex;
   margin-top: 50px;
   justify-content: center;
   background-color: white;
 }
 
+/* Buton stil */
 button {
   width: 75px;
   cursor: pointer;
@@ -12,7 +14,7 @@ button {
   border: none;
   outline: none;
   padding: 5px;
-  border-radius: 5px; 
+  border-radius: 5px;
   color: white;
   background-color: #379b6d;
 }
@@ -21,14 +23,17 @@ button:hover {
   opacity: 0.8;
 }
 
-#titlenButton{
+/* Başlık butonu stil */
+#titlenButton {
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-#login-form, #signup-form {
+/* Giriş formu ve kayıt formu stil */
+#login-form,
+#signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,42 +41,55 @@ button:hover {
   width: 500px;
 }
 
+/* Başlık stil */
 #title {
-    font-size: 300%;
-    color: black;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    display: block;
-    margin-top: 5%;
-    margin-bottom: 20px;
+  font-size: 300%;
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  display: block;
+  margin-top: 5%;
+  margin-bottom: 20px;
 }
 
-#loginButton, #signupButton, #toggleButton{
-  font-size: large; 
-  border-radius: 0%; 
+/* Giriş butonu, kayıt butonu, geçiş butonu stil */
+#loginButton,
+#signupButton,
+#toggleButton {
+  font-size: large;
+  border-radius: 0;
   width: 100%;
   height: auto;
   text-align: center;
   display: block;
 }
 
-#cancelButton, #deleteButton {
-  float:right;
+/* İptal butonu, silme butonu stil */
+#cancelButton,
+#deleteButton {
+  float: right;
   background-color: #e64346;
-}     
+}
 
+/* Başlık çubuğu çıkış butonu stil */
 #header #logoutButton {
   background-color: #e64346;
 }
 
-#addButton, #saveButton {
+/* Ekleme butonu, kaydetme butonu stil */
+#addButton,
+#saveButton {
   background-color: #379b6d;
 }
 
-#closeButton, #header button, #signupButton {
+/* Kapatma butonu, başlık butonu, kayıt butonu stil */
+#closeButton,
+#header button,
+#signupButton {
   background-color: #4ca2ce;
 }
 
+/* Başlık çubuğu stil */
 #header {
   padding: 10px;
   color: #e64346;
@@ -81,10 +99,12 @@ button:hover {
   justify-content: space-between;
 }
 
+/* Container stil */
 #container {
   width: 770px;
 }
 
+/* Haftanın günleri stil */
 #weekdays {
   width: 100%;
   display: flex;
@@ -96,6 +116,7 @@ button:hover {
   padding: 10px;
 }
 
+/* Takvim stil */
 #calendar {
   width: 100%;
   margin: auto;
@@ -103,6 +124,7 @@ button:hover {
   flex-wrap: wrap;
 }
 
+/* Gün stil */
 .day {
   width: 100px;
   padding: 10px;
@@ -111,7 +133,7 @@ button:hover {
   box-sizing: border-box;
   background-color: white;
   margin: 5px;
-  box-shadow: 0px 0px 3px #CBD4C2;
+  box-shadow: 0px 0px 3px #cbd4c2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -121,10 +143,11 @@ button:hover {
   background-color: #e8faed;
 }
 
-.day + #currentDay {
-  background-color:#e8f4fa;
+.day+#currentDay {
+  background-color: #e8f4fa;
 }
 
+/* Etkinlik stil */
 .event {
   font-size: 10px;
   padding: 3px;
@@ -137,11 +160,13 @@ button:hover {
 
 .padding {
   cursor: default !important;
-  background-color: #FFFCFF !important;
+  background-color: #fffcff !important;
   box-shadow: none !important;
 }
 
-#newEventModal, #deleteEventModal {
+/* Yeni etkinlik modalı, etkinlik silme modalı stil */
+#newEventModal,
+#deleteEventModal {
   display: none;
   z-index: 9999;
   padding: 25px;
@@ -155,14 +180,16 @@ button:hover {
   font-family: sans-serif;
 }
 
-#deleteEventModal{
+/* Etkinlik silme modalınını derinliği */
+#deleteEventModal {
   z-index: 15;
 }
 
-#eventDate{
-display: none;
+#eventDate {
+  display: none;
 }
 
+/* Etkinlik açıklaması stili */ 
 #eventTitleInput {
   padding: 10px;
   width: 100%;
@@ -178,10 +205,6 @@ display: none;
   border: 2px solid red;
 }
 
-#eventText {
-  font-size: 14px;
-}
-
 #modalBackDrop {
   display: none;
   top: 0px;
@@ -190,9 +213,10 @@ display: none;
   width: 100vw;
   height: 100vh;
   position: absolute;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Form stil */
 form {
   border: 3px solid #ffffff;
   max-width: 30%;
@@ -202,7 +226,8 @@ form {
   background-color: #ffffffcb;
 }
 
-input[type=text], input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -211,6 +236,7 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
+/* Arkaplan resmi stil */
 #backgroundImage {
   z-index: -1;
   position: absolute;
@@ -223,7 +249,7 @@ input[type=text], input[type=password] {
   max-height: 960px;
 }
 
-
+/* Saat stil */
 #clock {
   position: fixed;
   top: 10px;
@@ -232,7 +258,7 @@ input[type=text], input[type=password] {
   color: black;
   background-color: #ffffff;
   padding: 5px 10px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #clock_img {
@@ -244,17 +270,20 @@ input[type=text], input[type=password] {
   width: 30px;
 }
 
+/* Resim containerı stil */
 .imgcontainer {
   text-align: center;
   margin: 24px 0 12px 0;
 }
 
+/* Avatar resmi stil */
 img.avatar {
-  height: 125px; 
+  height: 125px;
   width: 125px;
   border-radius: 50%;
 }
 
+/* Container stil */
 .container {
   padding: 16px;
   position: relative;
