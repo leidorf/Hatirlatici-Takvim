@@ -42,7 +42,6 @@ hatirlatici-takvim
 ├── index.html
 ├── LICENSE
 ├── README.md
-├── tree.txt
 ├── pages
 │   └── calendar.html
 ├── resources
@@ -63,7 +62,7 @@ hatirlatici-takvim
 
 # Kullanılan Teknolojiler
 - <b>Front-end:</b> HTML, CSS, JavaScript
-- <b>Back-end:</b> NodeJS
+- <b>Back-end:</b> NodeJS, ExpressJS
 - <b>Server:</b> MySQL
 
 Uygulamanın daha rahat geliştirilmesi için web ortamı tercih edilmiştir. Bu teknolojiler, Hatırlatıcı Takvim uygulamasının geliştirilmesinde kullanılan temel yapı taşlarıdır. HTML, CSS ve JavaScript ile kullanıcı arayüzü oluşturulurken, Node.js sunucu tarafı uygulamaları geliştirmek için kullanılır. MySQL ise verilerin güvenli ve etkili bir şekilde saklanmasını ve yönetilmesini sağlar.
