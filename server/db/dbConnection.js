@@ -1,6 +1,7 @@
+// mysql2 modülünün import edilmesi
 const mysql = require('mysql2');
 
-// MySQL bağlantısını sağlar
+// MySQL bağlantısı için gerekli bilgilerin tanımlanması
 const db = mysql.createConnection({
   user: 'root',
   host: 'localhost',
@@ -8,7 +9,7 @@ const db = mysql.createConnection({
   database: 'hatirlatici-takvim'
 });
 
-// MySQL bağlantısıyla ilgili bilgilendirme yapar
+// MySQL bağlantısının sağlanması
 db.connect((err) => {
   if (err) {
     throw err;
@@ -16,4 +17,5 @@ db.connect((err) => {
   console.log("Bağlantı kuruldu!");
 });
 
+// Oluşturulan bağlantının dışarıya aktarılması
 module.exports = db;

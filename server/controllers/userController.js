@@ -1,14 +1,16 @@
 const db = require('../db/dbConnection');
 
-// Kullanıcı kaydını yapma
+// Kullanıcı kaydı işlemini gerçekleştiren fonksiyon
 exports.kayit = (req, res) => {
   const { username, password, password_repeat, email } = req.body;
 
-  // Şifre tekrarı dogrulama
+  // Şifre tekrarı doğrulama
   if (password !== password_repeat) {
     res.status(400).send("Şifreler uyuşmuyor");
     return;
   }
+  
+  // Veritabanına kullanıcı kaydı eklemek için SQL sorgusu
   db.query('INSERT INTO users (username, email, password, password_repeat) VALUES (?, ?, ?, ?)', [username, email, password, password_repeat], (err, result) => {
     if (err) {
       console.error('Kullanıcı kaydedilirken bir hata oluştu:', err);
@@ -20,10 +22,11 @@ exports.kayit = (req, res) => {
   });
 };
 
-// Kullanıcı girişi
+// Kullanıcı girişi işlemini gerçekleştiren fonksiyon
 exports.giris = (req, res) => {
   const { username, password } = req.body;
 
+  // Veritabanında kullanıcı adı ve şifreyi kontrol eden SQL sorgusu
   db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, result) => {
     if (err) {
       console.error('Kullanıcı sorgulanırken bir hata oluştu:', err);

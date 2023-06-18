@@ -8,13 +8,20 @@
       <title>Hatırlatıcı Takvim</title>
    </head>
    <body onload="showTime()">
+      <!-- Saat -->
       <span id="clock"></span>
       <img id="clock_img" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/clock_hour_minute_second_time_timer_watch_icon_123193.png">
+      
+      <!-- Arkaplan Gorseli -->
       <img id="backgroundImage" src="https://img.freepik.com/free-vector/appointment-booking-with-calendar-telephone_23-2148561971.jpg?w=1380&t=st=1686341592~exp=1686342192~hmac=3b55b4c3ca07fcb96e8710e6619a40c7d2472e8370e02a7708e5a8b67d1ab6d8" alt="Takvim Fotografi">
+      
+      <!-- Formlar Arası Gecis Butonu -->
       <div id="titlenButton">
          <p id="title">Hatırlatıcı Takvim</p>
          <button id="toggleButton" onclick="toggleForm()">Giriş Yap / Kayıt Ol</button>
       </div>
+
+      <!-- Giris Formu -->
       <form action="/giris" method="post" id="login-form">
          <div class="imgcontainer">
             <img src="https://pic.onlinewebfonts.com/svg/img_550781.png" alt="Avatar" class="avatar">
@@ -27,6 +34,8 @@
             <button id="loginButton" type="submit">Giriş</button>
          </div>
       </form>
+
+      <!-- Kayıt Formu -->
       <form action="/kayit" method="post" id="signup-form">
          <div class="container">
             <p id="title">Kayıt Ol</p>

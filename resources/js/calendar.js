@@ -1,7 +1,7 @@
 // Değişkenlerin tanımlanması
 let nav = 0; // Gezinme değişkeni
-let clicked = null; // Tıklanan tarih
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; // Etkinliklerin saklandığı dizi
+let clicked = null;
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
 // HTML elementlerinin tanımlanması
 const logoutButton = document.getElementById('logoutButton');
@@ -28,7 +28,7 @@ function getMonthName(month) {
 	return monthNames[month];
 }
 
-// Yeni etkinlik penceresinin açılması
+// Etkinlik penceresinin açılması
 function openModal(date) {
 	clicked = date;
 	const eventForDay = events.filter(e => e.date === clicked);
@@ -61,7 +61,7 @@ function openModal(date) {
 	backDrop.style.display = 'block';
 }
 
-// Düzenleme pencersini 
+// Düzenleme penceresinin açılması 
 function editModal() {
 	const eventForDay = events.find(e => e.date === clicked);
 	if (eventForDay) {
@@ -118,48 +118,42 @@ function saveEvent() {
 		}
 		localStorage.setItem('events', JSON.stringify(events));
 		closeModal();
-	} else {}
-}
-
-// Etkinliğin düzenleme penceresi
-function editEvent(event) {
-	eventTitleInput.value = event.title;
-	eventTimeInput.value = event.time;
-	newEventModal.style.display = 'block';
-	deleteEventModal.style.display = 'none';
-	backDrop.style.display = 'block';
-	document.getElementById('saveButton').removeEventListener('click', saveEvent);
-	document.getElementById('saveButton').addEventListener('click', saveEditedEvent);
-
-	function saveEditedEvent() {
-		if (eventTitleInput.value) {
-			eventTitleInput.classList.remove('error');
-			event.title = eventTitleInput.value;
-			event.time = eventTimeInput.value;
-			localStorage.setItem('events', JSON.stringify(events));
-			closeModal();
-		} else {
-			eventTitleInput.classList.add('error');
-		}
+	} else {
+		// Gerekli alanlar doldurulmadığında hata mesajı gösterilebilir
+		alert('Lütfen etkinlik başlığı ve zamanını girin.');
 	}
 }
 
 // Düzenlenen etkinliğin kaydedilmesi
 function saveEditedEvent(editedEvent) {
-	const eventTitleInput = document.querySelector('#eventText input[type="text"]');
-	const eventTimeInput = document.querySelector('#eventText input[type="time"]');
-	if (eventTitleInput.value) {
-		eventTitleInput.classList.remove('error');
-		editedEvent.title = eventTitleInput.value;
-		editedEvent.time = eventTimeInput.value;
-		localStorage.setItem('events', JSON.stringify(events));
-		closeModal();
-	} else {
-		eventTitleInput.classList.add('error');
-	}
+    const eventTitleInput = document.querySelector('#eventText input[type="text"]');
+    const eventTimeInput = document.querySelector('#eventText input[type="time"]');
+    if (eventTitleInput.value) {
+        eventTitleInput.classList.remove('error');
+        editedEvent.title = eventTitleInput.value;
+        editedEvent.time = eventTimeInput.value;
+        localStorage.setItem('events', JSON.stringify(events));
+        closeModal();
+    } else {
+        eventTitleInput.classList.add('error');
+    }
 }
 
-// Etkinlik silme fonksiyonu
+
+// Etkinlik düzenleme
+function editEvent(event) {
+    eventTitleInput.value = event.title;
+    eventTimeInput.value = event.time;
+    newEventModal.style.display = 'block';
+    deleteEventModal.style.display = 'none';
+    backDrop.style.display = 'block';
+    document.getElementById('saveButton').removeEventListener('click', saveEvent);
+    document.getElementById('saveButton').addEventListener('click', function() {
+        saveEditedEvent(event);
+    });
+}
+
+// Etkinlik silme 
 function deleteEvent() {
 	events = events.filter(e => e.date !== clicked);
 	localStorage.setItem('events', JSON.stringify(events));
@@ -174,7 +168,7 @@ function checkEventTime() {
 	const event = events.find(e => e.date === currentDay && e.time === currentTime);
 	if (event) {
 		playSound(event.title);
-		alert(title + " etkinliğinin zamanı gelmiştir.");
+		alert(event.title + " etkinliğinin zamanı gelmiştir.");
 	}
 }
 
@@ -231,7 +225,7 @@ function load() {
 	}
 }
 
-// Hesaptan çıkış yapma fonksiyonu
+// Hesaptan çıkış yapma 
 function logout() {
 	window.location.href = 'http://127.0.0.1:3000/hatirlatici-takvim/index.html';
 	window.location.href = 'http://localhost:1015/';
@@ -248,7 +242,7 @@ function initButtons() {
 		nav--;
 		load();
 	});
-	document.getElementById('saveButton').addEventListener('click', saveEvent);
+	document.getElementById('saveButton').onclick = saveEvent;
 	document.getElementById('editButton').style.display = 'none';
 	document.getElementById('addButton').addEventListener('click', openModal);
 	document.getElementById('closeButton').addEventListener('click', closeModal);
